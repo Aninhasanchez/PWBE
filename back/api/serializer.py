@@ -3,7 +3,5 @@ from .models import Cadastro
 
 class CadastroSerializer(serializers.ModelSerializer):
     class Meta:
-          model = Cadastro
-          fields = '__all__'
-        
-    
+        model = Cadastro
+        fields = '__all__'
