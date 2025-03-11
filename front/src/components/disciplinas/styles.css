@@ -1,0 +1,90 @@
+/* Estilos gerais */
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.container_home {
+    width: 90%;
+    max-width: 800px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.section_home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilizando a tabela */
+.table {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.lista {
+    display: grid;
+    grid-template-columns: 30px 30px 50px 80px 1fr 1fr 1fr 1fr;
+    align-items: center;
+
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    transition: background 0.3s;
+}
+
+.lista:hover {
+    background: #f9f9f9;
+}
+
+.edit, .delete {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.edit:hover {
+    color: #007bff;
+}
+
+.delete:hover {
+    color: #dc3545;
+}
+
+/* Rodapé com botões de ação */
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.pesquisar input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.adicionar, .procurar {
+    cursor: pointer;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+.adicionar:hover {
+    color: #28a745;
+}
+
+.procurar:hover {
+    color: #007bff;
+}

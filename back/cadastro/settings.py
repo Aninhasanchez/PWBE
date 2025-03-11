@@ -20,7 +20,7 @@ INSTALLED_APPS = [
     'api',
     'rest_framework_simplejwt',
     "corsheaders",
-    'django_filters',
+    'django_filters'
 ]
 
 REST_FRAMEWORK = {

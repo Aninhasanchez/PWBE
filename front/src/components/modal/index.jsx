@@ -37,27 +37,26 @@ const ModalProfessores = ({
     }
   }, [])
 
-  const upDate = async (professorSelecionado) => {
-    console.log("Professor Selecionado: ", professorSelecionado)
-    try {
-      const response = await axios.put(`http://127.0.0.1:8000/api/id/${professorSelecionado.id}`,
-        {
-          ni: professorSelecionado.ni,
-          nome: professorSelecionado.nome,
-          email: professorSelecionado.email,
-          cel: professorSelecionado.cel,
-          ocup: professorSelecionado.ocup
-        }, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+  const upDate = async () => {
+    console.log("Professor email: ", professorSelecionado)
+    debugger
+    const response = await axios.put(`http://127.0.0.1:8000/api/professores`,
+      {
+        ni: professorSelecionado.ni,
+        nome: professorSelecionado.nome,
+        email: professorSelecionado.email,
+        cel: professorSelecionado.cel,
+        ocup: professorSelecionado.ocup
+      }, {
+      headers: {
+        Authorization: `Bearer ${token}`
       }
-      )
-      onClose()
-      setUp(!up)
-    } catch (error) {
-      console.error(error)
     }
+    )
+    console.log("Response: ", response.data)
+    onClose()
+    setUp(!up)
+
   }
 
   const newTeacher = async () => {
@@ -83,9 +82,12 @@ const ModalProfessores = ({
   }
 
   const handleSubmit = () => {
-    e.preventDefault();
+    console.log("Professor S: ", professorSelecionado)
+debugger
+    // e.preventDefault();
+    
     if (professorSelecionado) {
-      upDate(professorSelecionado)
+      upDate()
     } else {
       newTeacher()
     }
