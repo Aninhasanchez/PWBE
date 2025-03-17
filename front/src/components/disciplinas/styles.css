@@ -8,7 +8,7 @@
     flex-direction: column;
 }
 .container_home{
-    background-color: rgb(228, 234, 232);
+    background-color: rgb(104, 116, 143);
     width: 75vw;
     max-width: 1000px;
     display: flex;
@@ -26,7 +26,7 @@
     width: 75vw;
     max-width: 1000px;
     font-size: 13px;
-    background-color: brown;
+    background-color: rgb(158, 53, 53);
     
 }
 
@@ -39,7 +39,7 @@
 }
 
 .footer{
-    background-color: rgb(198, 197, 194);
+    background-color: rgb(152, 195, 231);
     height: 50px;
     width: 75vw;
     max-width: 1000px;
@@ -83,14 +83,14 @@
 .pesquisar input{
     display: flex;
     height: 60%;
-    border-color: aliceblue;
+    border-color: rgb(238, 247, 255);
 }
 
 .lista{
     display: flex;
     column-gap: 30px;
     align-items: center;
-    background-color: rgb(225, 225, 225);
+    background-color: rgb(157, 203, 233);
     font-size: 15px;
 }
 

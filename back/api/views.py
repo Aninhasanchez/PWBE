@@ -75,3 +75,8 @@ class DisciplinasDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Disciplinas.objects.all()
     serializer_class = DisciplinasSerializer
     permission_classes = [IsAuthenticated]
+
+class DisciplinasView(ListCreateAPIView):
+    queryset = Disciplinas.objects.all()
+    serializer_class = DisciplinasSerializer
+    permission_classes = [IsAuthenticated]

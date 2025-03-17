@@ -53,7 +53,7 @@ const ModalDisciplinas = ({
 
   const newTeacher = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/disciplinas',
+      await axios.post('http://127.0.0.1:8000/api/disciplinas',
         {
           sigla: sigla,
           curso: curso,
@@ -73,15 +73,10 @@ const ModalDisciplinas = ({
   }
 
   const handleSubmit = () => {
+    // e.preventDefault();
     console.log("Disciplina S: ", disciplinaSelecionada)
 
-    // e.preventDefault();
-    
-    if (disciplinaSelecionada) {
-      upDate()
-    } else {
-      newTeacher()
-    }
+
   }
 
   return (

@@ -14,6 +14,7 @@ export default function Disciplinas() {
     const token = localStorage.getItem('token')
     const [disciplinaSelecionada, setDisciplinaSelecionada] = useState(null);
     const [texto, setTexto] = useState('');
+    const [up, setUp] = useState(false)
 
     useEffect(() => {
 
@@ -35,7 +36,7 @@ export default function Disciplinas() {
         };
 
         fetchData();
-    }, []);
+    }, [up]);
 
 
     const atualizar = async (disciplinaSelecionada  ) => {
@@ -78,31 +79,6 @@ export default function Disciplinas() {
 
 
     }
-
-
-    // const criar = async (novaDisciplina) => {
-    //     console.log("novaDisciplina: ", novaDisciplina)
-    //     try {
-    //         const response = await axios.post('http://127.0.0.1:8000/api/prof',
-    //             {
-    //                 sigla: novaDisciplina.sigla,
-    //                 curso: novaDisciplina.curso,
-    //                 semestre: novaDisciplina.semestre,
-    //                 cargaHoraria: novaDisciplina.cargaHoraria,
-    //             },
-    //             {
-    //                 headers: {
-    //                     Authorization: `Bearer ${token}`
-    //                 }
-    //             }
-    //         )
-    //         setDados([...dados, novaDisciplina])
-    //         setModalOpen(false)
-
-    //     } catch (error) {
-
-    //     }
-    // }
 
 
     const search = async (texto) => {
@@ -152,6 +128,8 @@ export default function Disciplinas() {
                         onClose={() => setModalOpen(false)} 
                         disciplinaSelecionada={disciplinaSelecionada}
                         setDisciplinaSelecionada={setDisciplinaSelecionada}
+                        up={up}
+                        setUp={setUp}
                     />
                 </section>
             </div>
