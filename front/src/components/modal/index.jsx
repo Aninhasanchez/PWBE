@@ -40,7 +40,7 @@ const ModalProfessores = ({
   const upDate = async () => {
     console.log("Professor email: ", professorSelecionado)
     debugger
-    const response = await axios.put(`http://127.0.0.1:8000/api/professores`,
+    const response = await axios.put(`http://127.0.0.1:8000/api/prof`,
       {
         ni: professorSelecionado.ni,
         nome: professorSelecionado.nome,
@@ -61,7 +61,7 @@ const ModalProfessores = ({
 
   const newTeacher = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/professores',
+      const response = await axios.post('http://127.0.0.1:8000/api/prof',
         {
           ni: ni,
           nome: nome,
@@ -83,7 +83,6 @@ const ModalProfessores = ({
 
   const handleSubmit = () => {
     console.log("Professor S: ", professorSelecionado)
-debugger
     // e.preventDefault();
     
     if (professorSelecionado) {

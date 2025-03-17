@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios"
 import { FaEdit, FaTrash, FaPlus, FaSearch } from 'react-icons/fa';
 import './styles.css';
-import ModalProfessores from "../modal";
+
+import ModalDisciplinas from "../modal_disciplinas";
 import Head from '../head';
 import Footer from '../footer';
 
@@ -9,67 +11,151 @@ export default function Disciplinas() {
 
     const [dados, setDados] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
-    const [professorSelecionado, setProfessorSelecionado] = useState(null);
+    const token = localStorage.getItem('token')
+    const [disciplinaSelecionada, setDisciplinaSelecionada] = useState(null);
     const [texto, setTexto] = useState('');
 
-    const handleEdit = (professor) => {
-        setProfessorSelecionado(professor);
-        setModalOpen(true);
-    };
+    useEffect(() => {
 
-    const handleDelete = (id) => {
-        if (window.confirm("Tem certeza que deseja excluir?")) {
-            setDados(dados.filter(professor => professor.id !== id));
+        if (!token) return;
+
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("http://127.0.0.1:8000/api/disciplinas", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                setDados(response.data);
+                console.log(response.data)
+                console.log("Response Data:", response.data);
+            } catch (error) {
+                console.error("Erro ao buscar dados:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+
+    const atualizar = async (disciplinaSelecionada  ) => {
+        try {
+            const response = await axios.put(`http://127.0.0.1:8000/api/disciplinas/id/${disciplinaSelecionada.id}`,
+                {
+                    sigla: disciplinaSelecionada.sigla,
+                    curso: disciplinaSelecionada.curso,
+                    semestre: disciplinaSelecionada.semestre,
+                    cargaHoraria: disciplinaSelecionada.cargaHoraria,
+                }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+            )
+            setDados(dados.map((disciplinas) => disciplinas.id === disciplinaSelecionada.id ? disciplinaSelecionada: disciplinas))
+            setModalOpen(false)
+        } catch (error) {
+            console.error(error)
         }
-    };
 
-    const handleAdd = () => {
-        setProfessorSelecionado(null);
-        setModalOpen(true);
-    };
+    }
 
-    const handleSearch = () => {
-        console.log("Buscar professor com nome:", texto);
-        setModalOpen(true);
-    };
+    const apagar = async (id) => {
+        if (window.confirm("Tem certeza? ")) {
+            try {
+                await axios.delete(`http://127.0.0.1:8000/api/disciplinas/id/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    }
+                })
+                setDados(dados.filter(disciplinas => disciplinas.id !== id))
+            }
 
+            catch (error) {
+                console.error(error)
+            }
+        }
+
+
+    }
+
+
+    // const criar = async (novaDisciplina) => {
+    //     console.log("novaDisciplina: ", novaDisciplina)
+    //     try {
+    //         const response = await axios.post('http://127.0.0.1:8000/api/prof',
+    //             {
+    //                 sigla: novaDisciplina.sigla,
+    //                 curso: novaDisciplina.curso,
+    //                 semestre: novaDisciplina.semestre,
+    //                 cargaHoraria: novaDisciplina.cargaHoraria,
+    //             },
+    //             {
+    //                 headers: {
+    //                     Authorization: `Bearer ${token}`
+    //                 }
+    //             }
+    //         )
+    //         setDados([...dados, novaDisciplina])
+    //         setModalOpen(false)
+
+    //     } catch (error) {
+
+    //     }
+    // }
+
+
+    const search = async (texto) => {
+        try {
+            const response = await axios.get(`http://127.0.0.1:8000/api/search/?search=${texto}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            )
+            setDisciplinaSelecionada(response.data[0])
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    
     return (
         <main className="main">
             <Head />
             <div className="container_home">
                 <section className="section_home">
                     <div className="table">
-                        {dados.map((professor) => (
-                            <div key={professor.id} className="lista">
-                                <FaEdit className="edit" onClick={() => handleEdit(professor)} />
-                                <FaTrash className="delete" onClick={() => handleDelete(professor.id)} />
-                                <span className="id">{professor.id}</span>
-                                <span className="ni">{professor.ni}</span>
-                                <span className="nome">{professor.nome}</span>
-                                <span className="email">{professor.email}</span>
-                                <span className="cel">{professor.cel}</span>
-                                <span className="ocup">{professor.ocup}</span>
+                        {dados.map((disciplinas) => (
+                            <div key={disciplinas.id} className="lista">
+                                <FaEdit className="edit" onClick={() => { setModalOpen(true), setDisciplinaSelecionada(disciplinas) }} />
+                                <FaTrash className="delete" onClick={() => apagar(disciplinas.id)} />
+                                <span className="sigla">Sigla: {disciplinas.sigla} |</span>
+                                <span className="curso">Curso: {disciplinas.curso} |</span>
+                                <span className="semestre">Semestre: {disciplinas.semestre} |</span>
+                                <span className="cargaHoraria">Carga Horaria: {disciplinas.cargaHoraria}</span>
                             </div>
                         ))}
                     </div>
                     <div className="footer">
-                        <FaPlus className="adicionar" onClick={handleAdd} />
+                        <FaPlus className="adicionar" onClick={() => { setModalOpen(true), setDisciplinaSelecionada(null) }} />
                         <input
-                            placeholder="Nome do professor"
+                            placeholder="Nome da disciplina"
                             value={texto}
                             onChange={(e) => setTexto(e.target.value)}
                         />
-                        <FaSearch className="procurar" onClick={handleSearch} />
+                        <FaSearch className="procurar" onClick={() => {setModalOpen(true) , search(texto)}} />
                     </div>
-                    <ModalProfessores 
+                    <ModalDisciplinas 
                         isOpen={modalOpen} 
                         onClose={() => setModalOpen(false)} 
-                        professorSelecionado={professorSelecionado}
-                        setProfessorSelecionado={setProfessorSelecionado}
+                        disciplinaSelecionada={disciplinaSelecionada}
+                        setDisciplinaSelecionada={setDisciplinaSelecionada}
                     />
                 </section>
             </div>
-            <Footer />
+            <Footer/>
         </main>
     );
 }

@@ -1,90 +1,175 @@
-/* Estilos gerais */
-.main {
+.main{
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    min-height: 100vh;
-    background-color: #f4f4f4;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
-
-.container_home {
-    width: 90%;
-    max-width: 800px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.section_home {
+.container_home{
+    background-color: rgb(228, 234, 232);
+    width: 75vw;
+    max-width: 1000px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
+    border-radius: 20px;
+    margin-top: 150px;
+    padding: 2dvh;
 }
 
-/* Estilizando a tabela */
-.table {
-    width: 100%;
-    margin: 20px 0;
+.table{
+    display: flex;
+    flex-direction: column;
+    width: 75vw;
+    max-width: 1000px;
+    font-size: 13px;
+    background-color: brown;
+    
 }
 
-.lista {
-    display: grid;
-    grid-template-columns: 30px 30px 50px 80px 1fr 1fr 1fr 1fr;
+.edit{
+    color: blue;
+}
+
+.delete{
+    color: brown;
+}
+
+.footer{
+    background-color: rgb(198, 197, 194);
+    height: 50px;
+    width: 75vw;
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 10px;
+    margin-top: 10px;
+    box-shadow: 0 5px 15px black;
+}
+
+.btn1{
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: aliceblue;
     align-items: center;
-
-    gap: 10px;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    transition: background 0.3s;
+    justify-content: center;
+    display: flex;
+    margin: 10px;
+    margin-left: 10px;
+}
+.btn2{
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: aliceblue;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 10px;
+    margin-left: 10px;
 }
 
-.lista:hover {
-    background: #f9f9f9;
+.pesquisar{
+    display: flex;
+    height: 100%;
+    justify-content: end;
+    align-items: center;
 }
 
-.edit, .delete {
+.pesquisar input{
+    display: flex;
+    height: 60%;
+    border-color: aliceblue;
+}
+
+.lista{
+    display: flex;
+    column-gap: 30px;
+    align-items: center;
+    background-color: rgb(225, 225, 225);
+    font-size: 15px;
+}
+
+.id {margin-left: 10px; min-width: 50px; }  /* Ajuste para IDs curtos */
+.ni { min-width: 100px; }
+.nome { min-width: 250px; } /* Ajuste para nomes mais longos */
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
     cursor: pointer;
-    transition: color 0.3s;
 }
 
-.edit:hover {
-    color: #007bff;
-}
-
-.delete:hover {
-    color: #dc3545;
-}
-
-/* Rodapé com botões de ação */
-.footer {
+.section_home{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    padding: 10px;
-    border-top: 1px solid #ddd;
+    flex-direction: column;
+    width: 100vw;
+    min-height: 550px;
+    
 }
 
-.pesquisar input {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 200px;
+.col1{
+    background-color: rgb(235, 235, 235);
+    width: 20px;
 }
-
-.adicionar, .procurar {
-    cursor: pointer;
-    font-size: 20px;
-    transition: color 0.3s;
+.col2{
+    background-color: rgb(200, 200, 200);
+    width: 20px;
 }
-
-.adicionar:hover {
-    color: #28a745;
+.col3{
+    background-color: rgb(235, 235, 235);
+    width: 40px;
 }
-
-.procurar:hover {
-    color: #007bff;
+.col4{
+    background-color: rgb(200, 200, 200);
+    width: 100px;
+}
+.col5{
+    background-color: rgb(235, 235, 235);
+    width: 150px;
+}
+.col6{
+    background-color: rgb(200, 200, 200);
+    width: 180px;
+}
+.col7{
+    background-color: rgb(235, 235, 235);
+    width: 100px;
+}
+.col8{
+    background-color: rgb(200, 200, 200);
+    width: 20px;
 }

@@ -26,6 +26,7 @@ export default function Home() {
                     },
                 });
                 setDados(response.data);
+                console.log(response.data)
                 console.log("Response Data:", response.data);
             } catch (error) {
                 console.error("Erro ao buscar dados:", error);
@@ -97,6 +98,7 @@ export default function Home() {
             )
             setDados([...dados, novoProfessor])
             setModalOpen(false)
+
         } catch (error) {
 
         }
@@ -118,6 +120,8 @@ export default function Home() {
         }
     }
 
+    
+
     return (
         <main className="main">
             <Head />
@@ -130,7 +134,7 @@ export default function Home() {
                                     <FaEdit className="edit" onClick={() => { setModalOpen(true), setProfessorSelecionado(professor) }} />
                                 </div>
                                 <div className="col2">
-                                    <FaTrash className="delete" onClick={() => apagar(professor)} />
+                                    <FaTrash className="delete" onClick={() => apagar(professor.id)} />
                                 </div>
                                 <div className="col3">
                                     <span className="id">{professor.id}</span>
