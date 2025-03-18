@@ -53,25 +53,22 @@
     color: red;
 }
 
-.ni_modal {
+.sigla_modal {
     width: 70px;
 }
 
-.nome_modal {
+.curso_modal {
     width: 380px;
 }
 
-.email_modal {
+.semestre_modal {
     width: 380px;
 }
 
-.cel_modal {
+.cargaHoraria_modal {
     width: 380px;
 }
 
-.ocup_modal {
-    width: 380px;
-}
 
 .image{
     display: flex;

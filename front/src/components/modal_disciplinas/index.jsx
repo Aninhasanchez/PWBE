@@ -17,6 +17,8 @@ const ModalDisciplinas = ({
   const [cargaHoraria, setCargaHoraria] = useState(disciplinaSelecionada?.cargaHoraria || '')
   const token = localStorage.getItem('token')
 
+
+
   useEffect(() => {
     if (disciplinaSelecionada) {
       setSigla(disciplinaSelecionada.sigla || '')
@@ -31,14 +33,16 @@ const ModalDisciplinas = ({
     }
   }, [])
 
+
+
   const upDate = async () => {
     console.log("Disciplina email: ", disciplinaSelecionada)
-    const response = await axios.put(`http://127.0.0.1:8000/api/disciplinas`,
+    const response = await axios.put(`http://127.0.0.1:8000/api/disciplinas/id/${disciplinaSelecionada.id}`,
       {
-        sigla: disciplinaSelecionada.sigla,
-        curso: disciplinaSelecionada.curso,
-        semestre: disciplinaSelecionada.semestre,
-        cargaHoraria: disciplinaSelecionada.cargaHoraria,
+        sigla: sigla,
+        curso: curso,
+        semestre: semestre,
+        cargaHoraria: cargaHoraria,
       }, {
       headers: {
         Authorization: `Bearer ${token}`

@@ -8,7 +8,7 @@
     flex-direction: column;
 }
 .container_home{
-    background-color: rgb(104, 116, 143);
+    background-color: rgb(228, 234, 232);
     width: 75vw;
     max-width: 1000px;
     display: flex;
@@ -26,7 +26,7 @@
     width: 75vw;
     max-width: 1000px;
     font-size: 13px;
-    background-color: rgb(158, 53, 53);
+    background-color: rgb(175, 74, 74);
     
 }
 
@@ -38,18 +38,14 @@
     color: brown;
 }
 
-.footer{
-    background-color: rgb(152, 195, 231);
-    height: 50px;
-    width: 75vw;
-    max-width: 1000px;
+.footer {
     display: flex;
-    justify-content: space-around;
-    border-radius: 10px;
-    margin-top: 10px;
-    box-shadow: 0 5px 15px black;
+    align-items: center;
+    justify-content: space-between;
+    width: 800px;
+    padding: 10px;
+    border-top: 1px solid #ddd;
 }
-
 .btn1{
     width: 30px;
     height: 30px;
@@ -83,15 +79,16 @@
 .pesquisar input{
     display: flex;
     height: 60%;
-    border-color: rgb(238, 247, 255);
+    border-color: aliceblue;
 }
 
-.lista{
-    display: flex;
-    column-gap: 30px;
+.lista {
+    display: grid;
+    grid-template-columns: 30px 30px auto auto auto auto auto;
     align-items: center;
-    background-color: rgb(157, 203, 233);
-    font-size: 15px;
+    gap: 10px;
+    padding: 10px;
+    transition: background 0.4s;
 }
 
 .id {margin-left: 10px; min-width: 50px; }  /* Ajuste para IDs curtos */
