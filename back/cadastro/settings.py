@@ -29,6 +29,12 @@ REST_FRAMEWORK = {
     )
 }
 
+
+AUTH_USER_MODEL = 'auth.User'  
+
+
+
+
 SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("Bearer",),
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),

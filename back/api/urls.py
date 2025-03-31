@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import *
+from .views import SignUpView
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -18,5 +19,6 @@ urlpatterns = [
 
     path('disciplinas', DisciplinasView.as_view()),
     path('disciplinas/id/<int:pk>', DisciplinasDetailView.as_view())
+
 ]
 

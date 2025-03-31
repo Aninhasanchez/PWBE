@@ -1,11 +1,14 @@
 from django.shortcuts import render
 from .models import Cadastro, Disciplinas
-from .serializer import CadastroSerializer, DisciplinasSerializer
+from .serializer import CadastroSerializer, DisciplinasSerializer, UserSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated, AllowAny
+
+from rest_framework import generics
+from django.contrib.auth.models import User
 
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
@@ -80,3 +83,10 @@ class DisciplinasView(ListCreateAPIView):
     queryset = Disciplinas.objects.all()
     serializer_class = DisciplinasSerializer
     permission_classes = [IsAuthenticated]
+
+
+
+class SignUpView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    pagination_class = [IsAuthenticated]
